@@ -1,33 +1,33 @@
 #include <stdio.h>
 
-void f_alpha(int *p) {
-    int temp = *p;
-    int rev = 0;
-    while (temp > 0) {
-        rev = (rev * 10) + (temp % 10);
-        temp = temp / 10;
+void f_revertir(int *Puntero_Secreto) {
+    int Restante = *Puntero_Secreto;
+    int revertido = 0;
+    while (Restante > 0) {
+        revertido = (revertido * 10) + (Restante % 10);
+        Restante = Restante / 10; //Sirve para invertir
     }
-    *p = rev;
+    *Puntero_Secreto = revertido;
 }
 
-void f_beta(int *p) {
-    *p = *p / 2;
+void f_dividir(int *Puntero_Secreto) {
+    *Puntero_Secreto = *Puntero_Secreto / 2;
 }
 
-void f_gamma(int *p) {
-    int temp = *p;
+void f_Suma_Individual(int *Puntero_Secreto) {
+    int Restante = *Puntero_Secreto;
     int suma = 0;
-    while (temp > 0) {
-        suma = suma + (temp % 10);
-        temp = temp / 10;
+    while (Restante > 0) {
+        suma = suma + (Restante % 10);
+        Restante = Restante / 10; 
     }
-    *p = *p + suma;
+    *Puntero_Secreto = *Puntero_Secreto + suma; //suma los numeros individuales 
 }
 
 void procesar_enigma(int *valor_referencia) {
-    f_alpha(valor_referencia);
-    f_beta(valor_referencia);
-    f_gamma(valor_referencia);
+    f_revertir(valor_referencia);
+    f_dividir(valor_referencia);
+    f_Suma_Individual(valor_referencia);
 }
 
 int main() {
@@ -39,7 +39,7 @@ int main() {
     // Pon un breakpoint aquí (F9) y usa F11 (Step Into) para entrar a cada función.
     procesar_enigma(&dato_secreto);
     
-    printf("Resultado final del enigma: %d\n", dato_secreto);
+    printf("Resultado final del enigma: %d\n", dato_secreto); //El valor es la reversion del numero dividida en 2 y sumada a la suma de sus numeros individuales
     
     return 0;
 }
